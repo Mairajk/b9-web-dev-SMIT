@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <h1>Feedback</h1>
+
+      <div id="feedback" class="feedback">
+        <form id="feedbackForm" class="feedbackForm" onsubmit="post(event)">
+          <label class="nameInput" for="nameInput">
+            Participant Name:
+            <br />
+            <input
+              type="text"
+              id="nameInput"
+              name="nameInput"
+              placeholder="Your Name"
+            />
+          </label>
+
+          <label for="feedbackInput" class="feedbackInput">
+            Enter Your Comments:
+            <textarea
+              type="text"
+              id="feedbackInput"
+              name="feedbackInput"
+              class="feedbackInput"
+              cols="30"
+              rows="10"
+              placeholder="Share your feedback about us ..."
+            ></textarea>
+          </label>
+
+          <button type="submit" class="submitButton">Submit</button>
+        </form>
+
+        <div id="previousComments"></div>
+      </div>
+    </div>
+
+    <script type="module" src="app.mjs"></script>
+  </body>
+</html>
