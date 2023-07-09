@@ -12,7 +12,11 @@
       <h1>Feedback</h1>
 
       <div id="feedback" class="feedback">
-        <form id="feedbackForm" class="feedbackForm" onsubmit="post(event)">
+        <form
+          id="feedbackForm"
+          class="feedbackForm"
+          onsubmit="submitHandler(event)"
+        >
           <label class="nameInput" for="nameInput">
             Participant Name:
             <br />
@@ -39,11 +43,85 @@
 
           <button type="submit" class="submitButton">Submit</button>
         </form>
+      </div>
 
-        <div id="previousComments"></div>
+      <div id="comments" class="comments">
+        <ul id="commentsList">
+          <li class="" id="">
+            <p class="name"><b>DSDSDSDSD:</b></p>
+            <p class="comment">fsfsfsfs</p>
+
+            <button onclick="editHandler()">Edit</button>
+            <button onclick="deleteHandler()">Submit</button>
+          </li>
+        </ul>
       </div>
     </div>
 
-    <script type="module" src="app.mjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
+    <script type="module">
+      const getData = async () => {
+        console.log(" -------- i am get data  ---------- ");
+
+        const commentsList = document.querySelector(`#commentsList`);
+
+        const {
+          data: { data },
+        } = await axios.get(`/feedback`);
+
+        console.log("data ---------------->", data);
+
+        data.map((obj, i) => {
+          commentsList.innerHTML += `
+          <li class="" id="">
+          <p class="name"><b>${obj?.participantName}:</b></p>
+          <p class="comment">${obj?.comment}</p>
+
+          <button onclick="editHandler(${obj?.id})">Edit</button>
+          <button onclick="deleteHandler(${obj?.id})">Submit</button>
+        </li>
+          `;
+        });
+      };
+
+      getData();
+
+      window.submitHandler = async (event) => {
+        event.preventDefault();
+
+        try {
+          console.log("---------- Im in submitHandler -----------");
+
+          const body = {
+            participantName: document.querySelector(`#nameInput`).value,
+            comment: document.querySelector(`#feedbackInput`).value,
+          };
+
+          await axios.post(`/feedback`, body);
+
+          await getData();
+        } catch (error) {
+          console.log("submit Error --------------->", error);
+        }
+      };
+
+      window.editHandler = (event, { id }) => {
+        try {
+          console.log("update id ------------>", id);
+
+          const html = ``;
+        } catch (error) {
+          console.log("update Error --------------->", error);
+        }
+      };
+
+      window.deleteHandler = (event, { id }) => {
+        try {
+          console.log("delete id ------------>", id);
+        } catch (error) {
+          console.log("delete Error --------------->", error);
+        }
+      };
+    </script>
   </body>
 </html>

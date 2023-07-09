@@ -4,6 +4,14 @@ body {
   color: #444;
 }
 
+li {
+  list-style-type: none;
+}
+
+h1 {
+  text-align: center;
+}
+
 .feedback {
   display: flex;
 }
@@ -42,6 +50,7 @@ body {
   margin-top: 5px;
   border: none;
   border-radius: 0.5rem;
+  box-shadow: 2px 2px 2px gray;
 }
 
 .feedbackForm .nameInput > input:focus,
@@ -57,4 +66,7 @@ body {
   margin-top: 5px;
   border: none;
   border-radius: 0.5rem;
+  resize: none;
+  width: 45rem;
+  box-shadow: 2px 2px 2px gray;
 }

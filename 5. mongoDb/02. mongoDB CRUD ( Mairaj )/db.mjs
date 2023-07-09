@@ -1,32 +1,31 @@
 import mongoose from "mongoose";
 
 // in schema we define what will be saved in database
-const commentsSchema = new mongoose.Schema({
-  name: { type: String, require: true },
+const feedbacksSchema = new mongoose.Schema({
+  participantName: { type: String, require: true },
   comment: { type: String, require: true },
-  createdDate: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now },
 });
 
-export const commentsModel = mongoose.model("comments", commentsSchema);
+export const feedbacksModel = mongoose.model("feedbacks", feedbacksSchema);
 
 // connecting mongodb with my app with mongoose
-const mongodbURI = 
-    process.env.mongodbURI ||
-    "mongodb+srv://dbuser:dbpassword@cluster0.gq9n2zr.mongodb.net/abcdatabase?retryWrites=true&w=majority";
+const mongodbURI =
+  process.env.mongodbURI || `mongodb+srv://MairajK:workhardin@cluster0.sihvwcq.mongodb.net/b9CRUD?retryWrites=true&w=majority`;
 
 export const connectDB = async () => {
   try {
-  
+
     const myConnection = await mongoose.connect(mongodbURI);
-   
+
     // this console should be removed (if for learning purpose)
     console.log(`MongoDB Connected: at ${myConnection.connection.host}`);
- 
+
   } catch (err) {
- 
+
     console.log("err", err);
     process.exit(1);
- 
+
   }
 };
 
